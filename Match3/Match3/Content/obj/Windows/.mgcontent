@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/blue.png</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/green.png</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/orange.png</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/pink.png</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/red.png</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/ok.png</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/Text.spritefont</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/GameFone.jpg</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/GameOverFone.jpg</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/MenuFone.png</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/Forecast.mp3</File>
+    <File>C:/Users/Dima/source/repos/Match3/Match3/Content/PlayButton.png</File>
+  </SourceFiles>
+</SourceFileCollection>

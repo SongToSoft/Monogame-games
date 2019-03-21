@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Dima/source/repos/Match3/Match3/Content/Forecast.mp3</SourceFile>
+  <SourceTime>2018-07-06T21:23:00.4119736+10:00</SourceTime>
+  <DestFile>C:/Users/Dima/source/repos/Match3/Match3/Content/bin/Windows/Forecast.xnb</DestFile>
+  <DestTime>2018-07-06T21:29:50.8452693+10:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2017-03-02T01:05:36+10:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2017-03-02T01:05:36+10:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Dima/source/repos/Match3/Match3/Content/bin/Windows/Forecast.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>
