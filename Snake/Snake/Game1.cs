@@ -12,28 +12,28 @@ namespace SnakeGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private Texture2D BlockTexture, AppleTexture;
-        private Texture2D HorizonBoard, VerticalBoard;
-        private SpriteFont Text;
+        private Texture2D blockTexture, appleTexture;
+        private Texture2D horizonBoard, verticalBoard;
+        private SpriteFont text;
         private Song song;
-        private static int SCALE = 16;
-        public static int DELAY;
-        public static int WIDTH = 40, HEIGHT = 40;
-        public static int HighScore;
+        private static int scale = 16;
+        public static int delay;
+        public static int width = 40, heigth = 40;
+        public static int highScore;
         public static Object.Apple appleOne, appleTwo;
         public static Object.Snake snakeOne, snakeTwo;
-        public static int Score = 0;
-        public static int Shift = 50;
-        public static string Mode = "Menu";
-        public static int MenuStat = 1;
+        public static int score = 0;
+        public static int shift = 50;
+        public static string mode = "Menu";
+        public static int menuStat = 1;
         public static string fullPath;
-        public static int GameOverStatus = 0;
+        public static int gameOverStatus = 0;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = SCALE * WIDTH;
-            graphics.PreferredBackBufferHeight = SCALE * HEIGHT;
+            graphics.PreferredBackBufferWidth = scale * width;
+            graphics.PreferredBackBufferHeight = scale * heigth;
             graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
@@ -42,12 +42,12 @@ namespace SnakeGame
         public static void StartGame()
         {
             Reader.GetHighScore(fullPath); 
-            Score = 0;
-            snakeOne = new Object.Snake(25, 15, WIDTH, HEIGHT);
-            snakeTwo = new Object.Snake(15, 5, WIDTH, HEIGHT);
-            appleOne = new Object.Apple(WIDTH, HEIGHT, 1);
-            appleTwo = new Object.Apple(WIDTH, HEIGHT, 10);
-            GameOverStatus = 0;
+            score = 0;
+            snakeOne = new Object.Snake(25, 15, width, heigth);
+            snakeTwo = new Object.Snake(15, 5, width, heigth);
+            appleOne = new Object.Apple(width, heigth, 1);
+            appleTwo = new Object.Apple(width, heigth, 10);
+            gameOverStatus = 0;
         }
         protected override void Initialize()
         {
@@ -57,13 +57,13 @@ namespace SnakeGame
 
         protected override void LoadContent()
         {
-            DELAY = 0;
+            delay = 0;
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            BlockTexture = Content.Load<Texture2D>("SnakeBlock");
-            AppleTexture = Content.Load<Texture2D>("Apple");
-            HorizonBoard = Content.Load<Texture2D>("HorizonBoard");
-            VerticalBoard = Content.Load<Texture2D>("VerticalBoard");
-            Text = Content.Load<SpriteFont>("Text");
+            blockTexture = Content.Load<Texture2D>("SnakeBlock");
+            appleTexture = Content.Load<Texture2D>("Apple");
+            horizonBoard = Content.Load<Texture2D>("HorizonBoard");
+            verticalBoard = Content.Load<Texture2D>("VerticalBoard");
+            text = Content.Load<SpriteFont>("Text");
             song = Content.Load<Song>("Song");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(song);
@@ -77,14 +77,14 @@ namespace SnakeGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (Mode == "Menu")
+            if (mode == "Menu")
                 if (Controller.Menu() == 1)
                     Exit();
-            if (Mode == "GameSolo")
+            if (mode == "GameSolo")
                 GamePlay.GameSolo();
-            if (Mode == "GamePVP")
+            if (mode == "GamePVP")
                 GamePlay.GamePVP();
-            if (Mode == "Game Over")
+            if (mode == "Game Over")
                 Controller.GameOver();
             base.Update(gameTime);
         }
@@ -93,63 +93,63 @@ namespace SnakeGame
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            if (Mode == "Menu")
+            if (mode == "Menu")
             {
-                spriteBatch.DrawString(Text, "Start Solo", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
-                spriteBatch.DrawString(Text, "Start PvP", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 + 25), Color.White);
-                spriteBatch.DrawString(Text, "Exit", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 + 75), Color.White);
-                if (MenuStat == 1)
-                    spriteBatch.DrawString(Text, ">", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
-                if (MenuStat == 2)
-                    spriteBatch.DrawString(Text, ">", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2 + 25), Color.White);
-                if (MenuStat == 3)
-                    spriteBatch.DrawString(Text, ">", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2 + 75), Color.White);
+                spriteBatch.DrawString(text, "Start Solo", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
+                spriteBatch.DrawString(text, "Start PvP", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 + 25), Color.White);
+                spriteBatch.DrawString(text, "Exit", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 + 75), Color.White);
+                if (menuStat == 1)
+                    spriteBatch.DrawString(text, ">", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
+                if (menuStat == 2)
+                    spriteBatch.DrawString(text, ">", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2 + 25), Color.White);
+                if (menuStat == 3)
+                    spriteBatch.DrawString(text, ">", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2 + 75), Color.White);
             }
-            if (Mode == "GameSolo")
+            if (mode == "GameSolo")
             {
-                spriteBatch.Draw(HorizonBoard, new Rectangle(Shift, Shift, 1, SCALE * HEIGHT + SCALE), Color.White);
-                spriteBatch.Draw(VerticalBoard, new Rectangle(Shift, Shift, SCALE * WIDTH + SCALE, 1), Color.White);
-                spriteBatch.Draw(HorizonBoard, new Rectangle(Shift + SCALE * HEIGHT + SCALE, Shift, 1, SCALE * HEIGHT + SCALE), Color.White);
-                spriteBatch.Draw(VerticalBoard, new Rectangle(Shift, Shift + SCALE * WIDTH + SCALE, SCALE * WIDTH + SCALE, 1), Color.White);
-                for (int i = 0; i < snakeOne.Length; ++i)
+                spriteBatch.Draw(horizonBoard, new Rectangle(shift, shift, 1, scale * heigth + scale), Color.White);
+                spriteBatch.Draw(verticalBoard, new Rectangle(shift, shift, scale * width + scale, 1), Color.White);
+                spriteBatch.Draw(horizonBoard, new Rectangle(shift + scale * heigth + scale, shift, 1, scale * heigth + scale), Color.White);
+                spriteBatch.Draw(verticalBoard, new Rectangle(shift, shift + scale * width + scale, scale * width + scale, 1), Color.White);
+                for (int i = 0; i < snakeOne.length; ++i)
                 {
-                    spriteBatch.Draw(BlockTexture, snakeOne.GetRectangle(i, SCALE), Color.White);
+                    spriteBatch.Draw(blockTexture, snakeOne.GetRectangle(i, scale), Color.White);
                 }
-                spriteBatch.Draw(AppleTexture, appleOne.GetRectangle(SCALE), Color.White);
-                spriteBatch.DrawString(Text, "Score:  " + Score, new Vector2(SCALE * WIDTH + SCALE + 100, Shift), Color.White);
-                spriteBatch.DrawString(Text, "High Score:  " + HighScore, new Vector2(SCALE * WIDTH + SCALE + 100, Shift * 2), Color.White);
+                spriteBatch.Draw(appleTexture, appleOne.GetRectangle(scale), Color.White);
+                spriteBatch.DrawString(text, "Score:  " + score, new Vector2(scale * width + scale + 100, shift), Color.White);
+                spriteBatch.DrawString(text, "High Score:  " + highScore, new Vector2(scale * width + scale + 100, shift * 2), Color.White);
             }
-            if (Mode == "GamePVP")
+            if (mode == "GamePVP")
             {
-                spriteBatch.Draw(HorizonBoard, new Rectangle(Shift, Shift, 1, SCALE * HEIGHT + SCALE), Color.White);
-                spriteBatch.Draw(VerticalBoard, new Rectangle(Shift, Shift, SCALE * WIDTH + SCALE, 1), Color.White);
-                spriteBatch.Draw(HorizonBoard, new Rectangle(Shift + SCALE * HEIGHT + SCALE, Shift, 1, SCALE * HEIGHT + SCALE), Color.White);
-                spriteBatch.Draw(VerticalBoard, new Rectangle(Shift, Shift + SCALE * WIDTH + SCALE, SCALE * WIDTH + SCALE, 1), Color.White);
-                for (int i = 0; i < snakeOne.Length; ++i)
+                spriteBatch.Draw(horizonBoard, new Rectangle(shift, shift, 1, scale * heigth + scale), Color.White);
+                spriteBatch.Draw(verticalBoard, new Rectangle(shift, shift, scale * width + scale, 1), Color.White);
+                spriteBatch.Draw(horizonBoard, new Rectangle(shift + scale * heigth + scale, shift, 1, scale * heigth + scale), Color.White);
+                spriteBatch.Draw(verticalBoard, new Rectangle(shift, shift + scale * width + scale, scale * width + scale, 1), Color.White);
+                for (int i = 0; i < snakeOne.length; ++i)
                 {
-                    spriteBatch.Draw(BlockTexture, snakeOne.GetRectangle(i, SCALE), Color.Yellow);
+                    spriteBatch.Draw(blockTexture, snakeOne.GetRectangle(i, scale), Color.Yellow);
                 }
-                for (int i = 0; i < snakeTwo.Length; ++i)
+                for (int i = 0; i < snakeTwo.length; ++i)
                 {
-                    spriteBatch.Draw(BlockTexture, snakeTwo.GetRectangle(i, SCALE), Color.Blue);
+                    spriteBatch.Draw(blockTexture, snakeTwo.GetRectangle(i, scale), Color.Blue);
                 }
-                spriteBatch.Draw(AppleTexture, appleOne.GetRectangle(SCALE), Color.White);
-                spriteBatch.Draw(AppleTexture, appleTwo.GetRectangle(SCALE), Color.White);
-                spriteBatch.DrawString(Text, "Score Player 1:  " + (snakeOne.Length - 5), new Vector2(SCALE * WIDTH + SCALE + 100, Shift), Color.White);
-                spriteBatch.DrawString(Text, "Score Player 2:  " + (snakeTwo.Length - 5), new Vector2(SCALE * WIDTH + SCALE + 100, Shift * 2), Color.White);
+                spriteBatch.Draw(appleTexture, appleOne.GetRectangle(scale), Color.White);
+                spriteBatch.Draw(appleTexture, appleTwo.GetRectangle(scale), Color.White);
+                spriteBatch.DrawString(text, "Score Player 1:  " + (snakeOne.length - 5), new Vector2(scale * width + scale + 100, shift), Color.White);
+                spriteBatch.DrawString(text, "Score Player 2:  " + (snakeTwo.length - 5), new Vector2(scale * width + scale + 100, shift * 2), Color.White);
             }
-            if (Mode == "Game Over")
+            if (mode == "Game Over")
             {
-                if (GameOverStatus == 1)
+                if (gameOverStatus == 1)
                 {
-                    spriteBatch.DrawString(Text, "Game Over", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
-                    spriteBatch.DrawString(Text, "Your Score: " + Score, new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 + 25), Color.White);
+                    spriteBatch.DrawString(text, "Game Over", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
+                    spriteBatch.DrawString(text, "Your Score: " + score, new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 + 25), Color.White);
                 }
-                if (GameOverStatus == 3)
-                    spriteBatch.DrawString(Text, "Player One Lose - Player Two Win", new Vector2(graphics.PreferredBackBufferWidth / 2 - 150, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
-                if (GameOverStatus == 4)
-                    spriteBatch.DrawString(Text, "Player Two Lose - Player One Win", new Vector2(graphics.PreferredBackBufferWidth / 2 - 150, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
-                spriteBatch.DrawString(Text, "Retry?", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 + 75), Color.White);
+                if (gameOverStatus == 3)
+                    spriteBatch.DrawString(text, "Player One Lose - Player Two Win", new Vector2(graphics.PreferredBackBufferWidth / 2 - 150, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
+                if (gameOverStatus == 4)
+                    spriteBatch.DrawString(text, "Player Two Lose - Player One Win", new Vector2(graphics.PreferredBackBufferWidth / 2 - 150, graphics.PreferredBackBufferHeight / 2 - 25), Color.White);
+                spriteBatch.DrawString(text, "Retry?", new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 + 75), Color.White);
                 
             }
             spriteBatch.End();

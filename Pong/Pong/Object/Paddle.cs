@@ -9,28 +9,28 @@ namespace Pong.Object
     public class Paddle
     {
         public Vector2 position;
-        public Texture2D Sprite;
-        private int SizeWidth = 5;
+        public Texture2D sprite;
+        private int sizeWidth = 5;
         public Rectangle GetRec()
         {
-            Rectangle Rec = new Rectangle((int)position.X, (int)position.Y, SizeWidth, Sprite.Height + 30);
+            Rectangle Rec = new Rectangle((int)position.X, (int)position.Y, sizeWidth, sprite.Height + 30);
             return Rec;
         }
         public Rectangle GetRecUp()
         {
-            Rectangle Rec = new Rectangle((int)position.X, (int)position.Y, SizeWidth, 2);
+            Rectangle Rec = new Rectangle((int)position.X, (int)position.Y, sizeWidth, 2);
             return Rec;
         }
         public Rectangle GetRecDown()
         {
-            Rectangle Rec = new Rectangle((int)position.X, (int)position.Y + Sprite.Height + 30, SizeWidth, 2);
+            Rectangle Rec = new Rectangle((int)position.X, (int)position.Y + sprite.Height + 30, sizeWidth, 2);
             return Rec;
         }
-        public Paddle(int X, int Y, Texture2D sprite)
+        public Paddle(int x, int y, Texture2D sprite)
         {
-            position.X = X;
-            position.Y = Y;
-            Sprite = sprite;
+            position.X = x;
+            position.Y = y;
+            this.sprite = sprite;
         }
     }
 }

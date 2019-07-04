@@ -9,57 +9,57 @@ namespace Pong
 {
     static class Controller
     {
-        private static bool MenuChecker = true;
+        private static bool menuChecker = true;
         public static void Player1()
         {
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.W))
-                if (Game1.Player1.position.Y > 0)
-                    Game1.Player1.position.Y -= Game1.SpeedPadle;
+                if (Game1.player1.position.Y > 0)
+                    Game1.player1.position.Y -= Game1.speedPadle;
             if (keyboardState.IsKeyDown(Keys.S))
-                if ((Game1.Player1.position.Y + Game1.Player1.Sprite.Height + 30) < (Game1.HEIGHT))
-                    Game1.Player1.position.Y += Game1.SpeedPadle;
+                if ((Game1.player1.position.Y + Game1.player1.sprite.Height + 30) < (Game1.height))
+                    Game1.player1.position.Y += Game1.speedPadle;
         }
         public static void Player2()
         {
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Up))
-                if (Game1.Player2.position.Y > 0)
-                    Game1.Player2.position.Y -= Game1.SpeedPadle;
+                if (Game1.player2.position.Y > 0)
+                    Game1.player2.position.Y -= Game1.speedPadle;
             if (keyboardState.IsKeyDown(Keys.Down))
-                if ((Game1.Player2.position.Y + Game1.Player2.Sprite.Height + 30) < (Game1.HEIGHT))
-                    Game1.Player2.position.Y += Game1.SpeedPadle;
+                if ((Game1.player2.position.Y + Game1.player2.sprite.Height + 30) < (Game1.height))
+                    Game1.player2.position.Y += Game1.speedPadle;
         }
         public static void PC()
         {
-            if (Game1.Player2.position.Y > Game1.ball.position.Y)
-                if (Game1.Player2.position.Y != 0)
-                    Game1.Player2.position.Y -= Game1.SpeedPadle;
-            if (Game1.Player2.position.Y < Game1.ball.position.Y)
-                if ((Game1.Player2.position.Y + Game1.Player2.Sprite.Height) != (Game1.HEIGHT))
-                    Game1.Player2.position.Y += Game1.SpeedPadle;
+            if (Game1.player2.position.Y > Game1.ball.position.Y)
+                if (Game1.player2.position.Y != 0)
+                    Game1.player2.position.Y -= Game1.speedPadle;
+            if (Game1.player2.position.Y < Game1.ball.position.Y)
+                if ((Game1.player2.position.Y + Game1.player2.sprite.Height) != (Game1.height))
+                    Game1.player2.position.Y += Game1.speedPadle;
         }
         static public int Menu()
         {
             KeyboardState keyState = Keyboard.GetState();
             if ((keyState.IsKeyDown(Keys.Down)) || (keyState.IsKeyDown(Keys.Up)))
             {
-                if (MenuChecker)
+                if (menuChecker)
                 {
-                    MenuChecker = false;
-                    Game1.MenuStat *= (-1);
+                    menuChecker = false;
+                    Game1.menuStat *= (-1);
                 }
             }
             else
             {
-                MenuChecker = true;
+                menuChecker = true;
             }
             if (keyState.IsKeyDown(Keys.Enter))
             {
-                if (Game1.MenuStat == 1)
+                if (Game1.menuStat == 1)
                 {
-                    MenuChecker = true;
-                    Game1.Mode = "Game";
+                    menuChecker = true;
+                    Game1.mode = "Game";
                 }
                 else
                 {

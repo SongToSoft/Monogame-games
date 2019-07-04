@@ -11,7 +11,7 @@ namespace SnakeGame
     //Класс управления
     static class Controller
     {
-        private static bool MenuChecker = true;
+        private static bool menuChecker = true;
         static public void GamePlayer1(Object.Snake snake)
         {
             KeyboardState keyState = Keyboard.GetState();
@@ -42,42 +42,42 @@ namespace SnakeGame
 
             if ((keyState.IsKeyDown(Keys.Down)))
             {
-                if (MenuChecker)
+                if (menuChecker)
                 {
-                    MenuChecker = false;
-                    Game1.MenuStat += 1;
-                    if (Game1.MenuStat == 4)
-                        Game1.MenuStat = 1;
+                    menuChecker = false;
+                    Game1.menuStat += 1;
+                    if (Game1.menuStat == 4)
+                        Game1.menuStat = 1;
                 }
             }
             else
             {
                 if ((keyState.IsKeyDown(Keys.Up)))
                 {
-                    if (MenuChecker)
+                    if (menuChecker)
                     {
-                        MenuChecker = false;
-                        Game1.MenuStat -= 1;
-                        if (Game1.MenuStat == 0)
-                            Game1.MenuStat = 3;
+                        menuChecker = false;
+                        Game1.menuStat -= 1;
+                        if (Game1.menuStat == 0)
+                            Game1.menuStat = 3;
                     }
                 }
                 else
-                    MenuChecker = true;
+                    menuChecker = true;
             }
             if (keyState.IsKeyDown(Keys.Enter))
             {
-                if (Game1.MenuStat == 1)
-                    Game1.Mode = "GameSolo";
-                if (Game1.MenuStat == 2)
+                if (Game1.menuStat == 1)
+                    Game1.mode = "GameSolo";
+                if (Game1.menuStat == 2)
                 {
-                    Game1.Mode = "GamePVP";
-                    Game1.snakeOne.Length = 5;
-                    Game1.snakeTwo.Length = 5;
+                    Game1.mode = "GamePVP";
+                    Game1.snakeOne.length = 5;
+                    Game1.snakeTwo.length = 5;
                 }
-                if (Game1.MenuStat == 3)
+                if (Game1.menuStat == 3)
                     return 1;
-                MenuChecker = true;
+                menuChecker = true;
             }
             return 0;
         }
@@ -86,11 +86,11 @@ namespace SnakeGame
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Enter))
             {
-                if (Game1.GameOverStatus == 1)
-                    if (Game1.Score > Game1.HighScore)
+                if (Game1.gameOverStatus == 1)
+                    if (Game1.score > Game1.highScore)
                         Reader.SetHighScore(Game1.fullPath);
                 Game1.StartGame();
-                Game1.Mode = "Menu";
+                Game1.mode = "Menu";
             }
         }
     }

@@ -14,12 +14,12 @@ namespace SpaceInvaders
         private static bool menuChecker = true;
         public static void UI(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.Text, "Start Game", new Vector2(Game1.width / 2 - 75, Game1.height / 2 - 25), Color.White);
-            spriteBatch.DrawString(Game1.Text, "Exit", new Vector2(Game1.width / 2 - 75, Game1.height / 2 + 25), Color.White);
+            spriteBatch.DrawString(Game1.text, "Start Game", new Vector2(Game1.width / 2 - 75, Game1.height / 2 - 25), Color.White);
+            spriteBatch.DrawString(Game1.text, "Exit", new Vector2(Game1.width / 2 - 75, Game1.height / 2 + 25), Color.White);
             if (Game1.menuState == 1)
-                spriteBatch.DrawString(Game1.Text, ">", new Vector2(Game1.width / 2 - 100, Game1.height / 2 - 25), Color.White);
+                spriteBatch.DrawString(Game1.text, ">", new Vector2(Game1.width / 2 - 100, Game1.height / 2 - 25), Color.White);
             if (Game1.menuState == 2)
-                spriteBatch.DrawString(Game1.Text, ">", new Vector2(Game1.width / 2 - 100, Game1.height / 2 + 25), Color.White);
+                spriteBatch.DrawString(Game1.text, ">", new Vector2(Game1.width / 2 - 100, Game1.height / 2 + 25), Color.White);
         }
         public static int Controller()
         {

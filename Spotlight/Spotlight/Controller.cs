@@ -15,16 +15,16 @@ namespace Spotlight
         {
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Enter))
-                Game1.Mode = "Game";
+                Game1.mode = "Game";
         }
         public static void GameOver()
         {
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Enter))
             {
-                Game1.Mode = "Game";
-                Game1.Level = 1;
-                Game1.Moves = Game1.Level + 4;
+                Game1.mode = "Game";
+                Game1.level = 1;
+                Game1.moves = Game1.level + 4;
                 Operators.FillBlocks();
             }
         }
@@ -32,16 +32,16 @@ namespace Spotlight
         {
             lastMouseState = currentMouseState;
             currentMouseState = Mouse.GetState();
-            for (int i = 0; i < Game1.N; ++i)
+            for (int i = 0; i < Game1.n; ++i)
             {
-                for (int j = 0; j < Game1.N; ++j)
+                for (int j = 0; j < Game1.n; ++j)
                 {
                     if ((lastMouseState.LeftButton == ButtonState.Released && currentMouseState.LeftButton == ButtonState.Pressed))
                     {
-                        if (Game1.Blokcs[i, j].GetRec().Contains(currentMouseState.X, currentMouseState.Y))
+                        if (Game1.blokcs[i, j].GetRec().Contains(currentMouseState.X, currentMouseState.Y))
                         {
                             Operators.FullSwap(i, j);
-                            --Game1.Moves;
+                            --Game1.moves;
                         }
                     }
                 }

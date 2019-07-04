@@ -10,19 +10,19 @@ namespace SnakeGame.Object
     public class Snake
     {
         public Vector2[] position;
-        public int Length = 2;
-        public int WIDTH, HEIGHT, SCALE;
+        public int length = 2;
+        public int width, heigth, scale;
         //0 - вверх, 1 - вправо, 2 - вниз, 3 влево
         public int Direction = 1;
         public int Speed = 1;
-        public Snake(int x0, int y0, int Width, int Height)
+        public Snake(int x0, int y0, int _width, int _height)
         {
-            WIDTH = Width;
-            HEIGHT = Height;
-            position = new Vector2[WIDTH * HEIGHT];
+            width = _width;
+            heigth = _height;
+            position = new Vector2[width * heigth];
             position[0].X = x0;
             position[0].Y = y0;
-            for (int i = 1; i < Length; ++i)
+            for (int i = 1; i < length; ++i)
             {
                 position[i].X = position[i - 1].X - 1;
                 position[i].Y = position[0].Y;
@@ -31,7 +31,7 @@ namespace SnakeGame.Object
         public void Step()
         {
             //Движение змейки
-            for (int i = Length; i > 0; --i)
+            for (int i = length; i > 0; --i)
                 position[i] = position[i - 1];
             if (Direction == 0)
                 position[0].Y -= Speed;
@@ -41,36 +41,36 @@ namespace SnakeGame.Object
                 position[0].Y += Speed;
             if (Direction == 3)
                 position[0].X -= Speed;
-            if (position[0].X > (WIDTH))
+            if (position[0].X > (width))
                 position[0].X = 0;
             if (position[0].X < 0)
-                position[0].X = WIDTH;
-            if (position[0].Y > (HEIGHT))
+                position[0].X = width;
+            if (position[0].Y > (heigth))
                 position[0].Y = 0;
             if (position[0].Y < 0)
-                position[0].Y = HEIGHT;
+                position[0].Y = heigth;
         }
         public bool CheckSnake(Snake snake)
         {
             //Условие на поедание хвоста
-            for (int i = 1; i < Length; ++i)
+            for (int i = 1; i < snake.length; ++i)
             {
                 if ((position[0].X == snake.position[i].X) && (position[0].Y == snake.position[i].Y))
                     return true;
             }
             return false;
         }
-        public Rectangle GetRectangle(int i, int SCALE)
+        public Rectangle GetRectangle(int i, int _scale)
         {
-            return (new Rectangle((int)position[i].X * SCALE + Game1.Shift, (int)position[i].Y * SCALE + Game1.Shift, SCALE - 1, SCALE - 1));
+            return (new Rectangle((int)position[i].X * _scale + Game1.shift, (int)position[i].Y * _scale + Game1.shift, _scale - 1, _scale - 1));
         }
         public void CheckApple(Apple apple)
         {
             //Условие на поедание яблока
             if ((position[0].X == apple.position.X) && (position[0].Y == apple.position.Y))
             {
-                ++Length;
-                ++Game1.Score;
+                ++length;
+                ++Game1.score;
                 apple.SetPosition();
             }
         }

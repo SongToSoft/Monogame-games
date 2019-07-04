@@ -10,23 +10,23 @@ namespace Match3.Object
 {
     public class Block
     {
-        public int Status;
-        public Texture2D Sprite;
-        public Vector2 Position;
-        public bool Active;
-        public bool Del;
+        public int status;
+        public Texture2D sprite;
+        public Vector2 position;
+        public bool active;
+        public bool del;
         public Block(int i, int j, int status)
         {
-            Active = false;
-            Del = false;
-            Position.X = j;
-            Position.Y = i;
-            Status = status;
-            Sprite = Operators.SetSprite(Status);
+            active = false;
+            del = false;
+            position.X = j;
+            position.Y = i;
+            this.status = status;
+            sprite = Operators.SetSprite(this.status);
         }
         public Rectangle GetRec()
         {
-            Rectangle rec = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Width, Sprite.Height);
+            Rectangle rec = new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height);
             return rec;
         }
     }

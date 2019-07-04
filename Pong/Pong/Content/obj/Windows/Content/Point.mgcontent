@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/dbogdano/Desktop/Monogame-games-master/Pong/Pong/Content/Point.spritefont</SourceFile>
+  <SourceTime>2019-07-04T22:29:11.5693766+03:00</SourceTime>
+  <DestFile>C:/Users/dbogdano/Desktop/Monogame-games-master/Pong/Pong/Content/bin/Windows/Content/Point.xnb</DestFile>
+  <DestTime>2019-07-04T22:29:14.7802525+03:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2018-12-08T19:35:54+03:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2018-12-08T19:35:54+03:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

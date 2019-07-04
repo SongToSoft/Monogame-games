@@ -10,8 +10,8 @@ namespace SpaceInvaders
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        public static Texture2D PlayerSprite, BulletSprite, EnemySprite;
-        public static SpriteFont Text;
+        public static Texture2D playerSprite, bulletSprite, enemySprite;
+        public static SpriteFont text;
         public static int width, height;
         private static Player player;
         private static Enemy[,] enemyArray;
@@ -83,7 +83,7 @@ namespace SpaceInvaders
         {
             for (int i = 0; i < n; ++i)
                 for (int j = 0; j < m; ++j)
-                    enemyArray[i, j] = new Enemy(EnemySprite, new Vector2(i * 60, j * 50 + 20), speed);
+                    enemyArray[i, j] = new Enemy(enemySprite, new Vector2(i * 60, j * 50 + 20), speed);
         }
         public Game1()
         {
@@ -99,11 +99,11 @@ namespace SpaceInvaders
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            PlayerSprite = Content.Load<Texture2D>("Player");
-            BulletSprite = Content.Load<Texture2D>("Bullet");
-            EnemySprite = Content.Load<Texture2D>("Invader");
-            Text = Content.Load<SpriteFont>("Text");
-            player = new Player(PlayerSprite);
+            playerSprite = Content.Load<Texture2D>("Player");
+            bulletSprite = Content.Load<Texture2D>("Bullet");
+            enemySprite = Content.Load<Texture2D>("Invader");
+            text = Content.Load<SpriteFont>("Text");
+            player = new Player(playerSprite);
             enemyArray = new Enemy[n, m];
             CreateEnemyArray();
         }
@@ -163,11 +163,11 @@ namespace SpaceInvaders
                 for (int i = 0; i < n; ++i)
                     for (int j = 0; j < m; ++j)
                         enemyArray[i, j].UI(spriteBatch);
-                spriteBatch.DrawString(Game1.Text, "Level: " + level, new Vector2(20, Game1.height - 30), Color.White);
+                spriteBatch.DrawString(Game1.text, "Level: " + level, new Vector2(20, Game1.height - 30), Color.White);
             }
             if (mode == "Game Over")
             {
-                spriteBatch.DrawString(Game1.Text, "Game Over", new Vector2(Game1.width / 2 - 75, Game1.height / 2 + 25), Color.White);
+                spriteBatch.DrawString(Game1.text, "Game Over", new Vector2(Game1.width / 2 - 75, Game1.height / 2 + 25), Color.White);
             }
             spriteBatch.End();
             base.Draw(gameTime);

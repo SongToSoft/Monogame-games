@@ -12,20 +12,20 @@ namespace Match3
     {
         static public void GetHighScore(string Path)
         {
-            StreamReader SR = new StreamReader(Path);
-            string line = SR.ReadLine();
+            StreamReader sr = new StreamReader(Path);
+            string line = sr.ReadLine();
             if (line != null)
             {
                 string[] numbers = line.Split(' ');
-                Game1.HighScore = int.Parse(numbers[0]);
+                Game1.highScore = int.Parse(numbers[0]);
             }
-            SR.Close();
+            sr.Close();
         }
         static public void SetHighScore(string Path)
         {
-            StreamWriter SW = new StreamWriter(Path);
-            SW.Write(Game1.Score);
-            SW.Close();
+            StreamWriter sw = new StreamWriter(Path);
+            sw.Write(Game1.score);
+            sw.Close();
         }
     }
 }

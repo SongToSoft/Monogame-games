@@ -9,13 +9,13 @@ namespace Spotlight
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public static int Level;
-        public static int N = 10;
-        public static int Moves;
-        public static string Mode = "Menu";
+        public static int level;
+        public static int n = 10;
+        public static int moves;
+        public static string mode = "Menu";
 
         public static Texture2D light, dark;
-        public static Block[,] Blokcs;
+        public static Block[,] blokcs;
 
         private SpriteFont Text;
         public Game1()
@@ -30,8 +30,8 @@ namespace Spotlight
         protected override void Initialize()
         {
             base.Initialize();
-            Level = 1;
-            Moves = Level + 3;
+            level = 1;
+            moves = level + 3;
         }
         protected override void LoadContent()
         {
@@ -39,12 +39,12 @@ namespace Spotlight
             light = Content.Load<Texture2D>("light");
             dark = Content.Load<Texture2D>("dark");
             Text = Content.Load<SpriteFont>("Text");
-            Blokcs = new Block[N, N];
-            for (int i = 0; i < N; ++i)
+            blokcs = new Block[n, n];
+            for (int i = 0; i < n; ++i)
             {
-                for (int j = 0; j < N; ++j)
+                for (int j = 0; j < n; ++j)
                 {
-                    Blokcs[i, j] = new Block(150 + 60 * j, 30 + 60 * i, light);
+                    blokcs[i, j] = new Block(150 + 60 * j, 30 + 60 * i, light);
                 }
             }
         }
@@ -58,26 +58,26 @@ namespace Spotlight
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (Mode == "Menu")
+            if (mode == "Menu")
                 Controller.Menu();
-            if (Mode == "Game")
+            if (mode == "Game")
             {
                 Controller.Game();
                 if (Operators.CheckBlock())
                 {
-                    for (int i = 0; i < Level; ++i)
+                    for (int i = 0; i < level; ++i)
                     {
                         Operators.Step(i);
                     }
-                    Moves = Level + 4;
-                    ++Level;
+                    moves = level + 4;
+                    ++level;
                 }
-                if (Moves == 0)
+                if (moves == 0)
                 {
-                    Mode = "Game Over";
+                    mode = "Game Over";
                 }
             }
-            if (Mode == "Game Over")
+            if (mode == "Game Over")
                 Controller.GameOver();
             base.Update(gameTime);
         }
@@ -85,21 +85,21 @@ namespace Spotlight
         {
             GraphicsDevice.Clear(new Color(246, 246, 246));
             spriteBatch.Begin();
-            if (Mode == "Menu")
+            if (mode == "Menu")
                 spriteBatch.DrawString(Text, "Press Enter", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2), Color.Black);
-            if (Mode == "Game")
+            if (mode == "Game")
             {
-                for (int i = 0; i < N; ++i)
+                for (int i = 0; i < n; ++i)
                 {
-                    for (int j = 0; j < N; ++j)
+                    for (int j = 0; j < n; ++j)
                     {
-                        spriteBatch.Draw(Blokcs[i, j].Sprite, Blokcs[i, j].GetRec(), Color.White);
+                        spriteBatch.Draw(blokcs[i, j].sprite, blokcs[i, j].GetRec(), Color.White);
                     }
                 }
-                spriteBatch.DrawString(Text, "Levels = " + (Level - 1), new Vector2(800, 100), Color.Black);
-                spriteBatch.DrawString(Text, "Moves = " + (Moves), new Vector2(800, 200), Color.Black);
+                spriteBatch.DrawString(Text, "Levels = " + (level - 1), new Vector2(800, 100), Color.Black);
+                spriteBatch.DrawString(Text, "Moves = " + (moves), new Vector2(800, 200), Color.Black);
             }
-            if (Mode == "Game Over")
+            if (mode == "Game Over")
             {
                 spriteBatch.DrawString(Text, "Game Over", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2 - 100), Color.Black);
                 spriteBatch.DrawString(Text, "Press Enter", new Vector2(graphics.PreferredBackBufferWidth / 2 - 100, graphics.PreferredBackBufferHeight / 2), Color.Black);

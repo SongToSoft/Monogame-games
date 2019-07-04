@@ -11,7 +11,7 @@ namespace Snake
     {
         public static void GameSolo()
         {
-            if (Game1.DELAY == 5)
+            if (Game1.delay == 5)
             {
                 Controller.GamePlayer1(Game1.snakeOne);
                 Game1.snakeOne.CheckApple(Game1.appleOne);
@@ -19,17 +19,17 @@ namespace Snake
                 Game1.snakeOne.Step();
                 if (Game1.snakeOne.CheckSnake(Game1.snakeOne))
                 {
-                    Game1.GameOverStatus = 1;
-                    Game1.Mode = "Game Over";
+                    Game1.gameOverStatus = 1;
+                    Game1.mode = "Game Over";
                 }
-                Game1.DELAY = 0;
+                Game1.delay = 0;
             }
             else
-                ++Game1.DELAY;
+                ++Game1.delay;
         }
         public static void GamePVP()
         {
-            if (Game1.DELAY == 5)
+            if (Game1.delay == 5)
             {
                 Controller.GamePlayer1(Game1.snakeOne);
                 Controller.GamePlayer2(Game1.snakeTwo);
@@ -48,21 +48,21 @@ namespace Snake
                 Game1.appleTwo.CheckSnake(Game1.snakeTwo);
                 if (Game1.snakeOne.CheckSnake(Game1.snakeOne) || Game1.snakeOne.CheckSnake(Game1.snakeTwo))
                 {
-                    Game1.GameOverStatus = 3;
-                    Game1.Mode = "Game Over";
+                    Game1.gameOverStatus = 3;
+                    Game1.mode = "Game Over";
                 }
                 Game1.snakeOne.Step();
                 if (Game1.snakeTwo.CheckSnake(Game1.snakeOne) || Game1.snakeTwo.CheckSnake(Game1.snakeTwo))
                 {
-                    Game1.GameOverStatus = 4;
-                    Game1.Mode = "Game Over";
+                    Game1.gameOverStatus = 4;
+                    Game1.mode = "Game Over";
                 }
 
                 Game1.snakeTwo.Step();
-                Game1.DELAY = 0;
+                Game1.delay = 0;
             }
             else
-                ++Game1.DELAY;
+                ++Game1.delay;
         }
     }
 }

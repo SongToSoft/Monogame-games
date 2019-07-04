@@ -14,19 +14,19 @@ namespace Match3
     static class Operators
     {
         private static Random rand;
-        private static bool Checker = false;
+        private static bool checker = false;
         //Генерация поля без совпадающих блоков
         public static void Generate()
         {
             while (Check())
             {
-                Checker = true;
+                checker = true;
                 rand = new Random();
-                for (int i = 0; i < Game1.N; ++i)
+                for (int i = 0; i < Game1.n; ++i)
                 {
-                    for (int j = 0; j < Game1.N; j++)
+                    for (int j = 0; j < Game1.n; j++)
                     {
-                        Game1.Blocks[i, j] = new Block(150 + 60 * i, 150 + 60 * j, rand.Next(0, 5));
+                        Game1.blocks[i, j] = new Block(150 + 60 * i, 150 + 60 * j, rand.Next(0, 5));
                     }
                 }
             }
@@ -34,15 +34,15 @@ namespace Match3
         //Проверка поля на совпадения
         public static bool Check()
         {
-            if (Checker == true)
+            if (checker == true)
             {
                 for (int i = 0; i < 5; ++i)
                     RoundBlocks(i);
-                for (int i = 0; i < Game1.N; ++i)
+                for (int i = 0; i < Game1.n; ++i)
                 {
-                    for (int j = 0; j < Game1.N; ++j)
+                    for (int j = 0; j < Game1.n; ++j)
                     {
-                        if (Game1.Blocks[i, j].Del == true)
+                        if (Game1.blocks[i, j].del == true)
                             return true;
                     }
                 }
@@ -50,70 +50,70 @@ namespace Match3
             }
             return true;
         }
-        public static void SwapBlock(Block One, Block Two)
+        public static void SwapBlock(Block one, Block two)
         {
-            int Stat = One.Status;
-            Texture2D Sprite = One.Sprite;
-            bool Del = One.Del;
-            One.Status = Two.Status;
-            One.Del = Two.Del;
-            One.Sprite = Two.Sprite;
-            Two.Status = Stat;
-            Two.Del = Del;
-            Two.Sprite = Sprite;
+            int stat = one.status;
+            Texture2D sprite = one.sprite;
+            bool del = one.del;
+            one.status = two.status;
+            one.del = two.del;
+            one.sprite = two.sprite;
+            two.status = stat;
+            two.del = del;
+            two.sprite = sprite;
         }
         public static void DelBlocks()
         {
             //Поднимаем все блоки для удаления
-            for (int i = Game1.N - 1; i > 0; --i)
+            for (int i = Game1.n - 1; i > 0; --i)
             {
-                for (int j = Game1.N - 1; j > 0; --j)
+                for (int j = Game1.n - 1; j > 0; --j)
                 {
-                    if (Game1.Blocks[i, j].Del == true)
+                    if (Game1.blocks[i, j].del == true)
                     {
-                        SwapBlock(Game1.Blocks[i, j], Game1.Blocks[i - 1, j]);
+                        SwapBlock(Game1.blocks[i, j], Game1.blocks[i - 1, j]);
                     }
                 }
             }
             //Заменяем удаленные блоки на новые
-            for (int i = 0; i < Game1.N; ++i)
+            for (int i = 0; i < Game1.n; ++i)
             {
-                for (int j = 0; j < Game1.N; ++j)
+                for (int j = 0; j < Game1.n; ++j)
                 {
-                    if (Game1.Blocks[i, j].Del == true)
+                    if (Game1.blocks[i, j].del == true)
                     {
-                        Game1.Blocks[i, j].Status = rand.Next(0, 5);
-                        Game1.Blocks[i, j].Sprite = SetSprite(Game1.Blocks[i, j].Status);
-                        Game1.Blocks[i, j].Del = false;
-                        ++Game1.Score;
+                        Game1.blocks[i, j].status = rand.Next(0, 5);
+                        Game1.blocks[i, j].sprite = SetSprite(Game1.blocks[i, j].status);
+                        Game1.blocks[i, j].del = false;
+                        ++Game1.score;
                     }
                 }
             }
         }
         public static Texture2D SetSprite(int Status)
         {
-            Texture2D sprite = Game1.RedSprite;
+            Texture2D sprite = Game1.redSprite;
             if (Status == 0)
-                sprite = Game1.RedSprite;
+                sprite = Game1.redSprite;
             if (Status == 1)
-                sprite = Game1.BlueSprite;
+                sprite = Game1.blueSprite;
             if (Status == 2)
-                sprite = Game1.GreenSprite;
+                sprite = Game1.greenSprite;
             if (Status == 3)
-                sprite = Game1.OrangeSprite;
+                sprite = Game1.orangeSprite;
             if (Status == 4)
-                sprite = Game1.PinkSprite;
+                sprite = Game1.pinkSprite;
             return sprite;
         }
         //Обход блоков и отметка их на удаление
         public static void RoundBlocks(int Stat)
         {
             int Count = 0;
-            for (int i = 0; i < Game1.N; ++i)
+            for (int i = 0; i < Game1.n; ++i)
             {
-                for (int j = 0; j < Game1.N; ++j)
+                for (int j = 0; j < Game1.n; ++j)
                 {
-                    if (Game1.Blocks[i, j].Status == Stat)
+                    if (Game1.blocks[i, j].status == Stat)
                     {
                         ++Count;
                     }
@@ -123,7 +123,7 @@ namespace Match3
                         {
                             for (int k = (j - Count); k < j; ++k)
                             {
-                                Game1.Blocks[i, k].Del = true;
+                                Game1.blocks[i, k].del = true;
                             }
                         }
                         Count = 0;
@@ -131,19 +131,19 @@ namespace Match3
                 }
                 if (Count > 2)
                 {
-                    for (int k = (Game1.N - Count); k < Game1.N; ++k)
+                    for (int k = (Game1.n - Count); k < Game1.n; ++k)
                     {
-                        Game1.Blocks[i, k].Del = true;
+                        Game1.blocks[i, k].del = true;
                     }
                 }
                 Count = 0;
             }
             Count = 0;
-            for (int j = 0; j < Game1.N; ++j)
+            for (int j = 0; j < Game1.n; ++j)
             {
-                for (int i = 0; i < Game1.N; ++i)
+                for (int i = 0; i < Game1.n; ++i)
                 {
-                    if (Game1.Blocks[i, j].Status == Stat)
+                    if (Game1.blocks[i, j].status == Stat)
                     {
                         ++Count;
                     }
@@ -153,7 +153,7 @@ namespace Match3
                         {
                             for (int k = (i - Count); k < i; ++k)
                             {
-                                Game1.Blocks[k, j].Del = true;
+                                Game1.blocks[k, j].del = true;
                             }
                         }
                         Count = 0;
@@ -161,9 +161,9 @@ namespace Match3
                 }
                 if (Count > 2)
                 {
-                    for (int k = (Game1.N - Count); k < Game1.N; ++k)
+                    for (int k = (Game1.n - Count); k < Game1.n; ++k)
                     {
-                        Game1.Blocks[k, j].Del = true;
+                        Game1.blocks[k, j].del = true;
                     }
                 }
                 Count = 0;

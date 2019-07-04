@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/dbogdano/Desktop/Monogame-games-master/Spotlight/Spotlight/Content/dark.jpg","C:/Users/dbogdano/Desktop/Monogame-games-master/Spotlight/Spotlight/Content/bin/Windows/Content/dark.xnb","TextureProcessor","Texture2DContent",61211,853301,0,4029575
+"C:/Users/dbogdano/Desktop/Monogame-games-master/Spotlight/Spotlight/Content/light.jpg","C:/Users/dbogdano/Desktop/Monogame-games-master/Spotlight/Spotlight/Content/bin/Windows/Content/light.xnb","TextureProcessor","Texture2DContent",17060,853301,0,0980056
+"C:/Users/dbogdano/Desktop/Monogame-games-master/Spotlight/Spotlight/Content/Text.spritefont","C:/Users/dbogdano/Desktop/Monogame-games-master/Spotlight/Spotlight/Content/bin/Windows/Content/Text.xnb","FontDescriptionProcessor","SpriteFontContent",2008,37905,0,372021

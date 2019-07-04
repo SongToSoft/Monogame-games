@@ -10,29 +10,29 @@ namespace SnakeGame.Object
     public class Apple
     {
         public Vector2 position;
-        private int WIDTH, HEIGHT;
-        public Apple(int Width, int Heigth, int ran)
+        private int width, height;
+        public Apple(int _width, int _heigth, int ran)
         {
             Random rand = new Random(ran);
-            WIDTH = Width;
-            HEIGHT = Heigth;
-            position.X = (int)(rand.NextDouble() * WIDTH);
-            position.Y = (int)(rand.NextDouble() * HEIGHT);
+            width = _width;
+            height = _heigth;
+            position.X = (int)(rand.NextDouble() * width);
+            position.Y = (int)(rand.NextDouble() * height);
         }
         public void SetPosition()
         {
             Random rand = new Random();
-            position.X = (int)(rand.NextDouble() * WIDTH);
-            position.Y = (int)(rand.NextDouble() * HEIGHT);
+            position.X = (int)(rand.NextDouble() * width);
+            position.Y = (int)(rand.NextDouble() * height);
         }
-        public Rectangle GetRectangle(int SCALE)
+        public Rectangle GetRectangle(int scale)
         {
-            return (new Rectangle((int)position.X * SCALE + Game1.Shift, (int)position.Y * SCALE + Game1.Shift, SCALE - 1, SCALE - 1));
+            return (new Rectangle((int)position.X * scale + Game1.shift, (int)position.Y * scale + Game1.shift, scale - 1, scale - 1));
         }
         public void CheckSnake(Snake snake)
         {
             //Условие на появление яблока внутри змейки
-            for (int i = 0; i < snake.Length; ++i)
+            for (int i = 0; i < snake.length; ++i)
             {
                 if ((snake.position[i].X == position.X) && (snake.position[i].Y == position.Y))
                     SetPosition();
